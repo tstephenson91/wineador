@@ -6,12 +6,16 @@ const express = require("express"),
   cors = require("cors"),
   mongoose = require("mongoose"),
   app = express(),
+
   PORT = process.env.PORT || 4000,
-  HOST = process.env.HOST || "127.0.0.1";
-  db = require("./db");
+  HOST = process.env.HOST || "127.0.0.1"
+
+  db = require("./db"),
+  authMiddleware = require("./controllers/auth")
 
 app.use(cors())
 app.use(express.json())
+app.use("/api/auth", authMiddleware)
 
 
 app.listen(PORT, HOST, () => {
